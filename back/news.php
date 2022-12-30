@@ -14,7 +14,13 @@
                     <td></td>
                 </tr>
                 <?php
-                $rows = $News->all();
+                  $total = $News->count(); //總筆數
+                  $num =4; //每頁筆數 
+                  $pages = ceil($total / $num); //總頁數
+                  $now = $_GET['p'] ?? 1; //頁數初始化
+                  $start = ($now - 1) * $num; //開始的地方 dbSQL 從0開始
+                  $rows = $News->all("limit $start,$num");//建立查詢
+                
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
                     // echo $checked;
@@ -40,6 +46,27 @@
                 <?php }  ?>
             </tbody>
         </table>
+        <style>
+            .cent a {
+                text-decoration: none;
+            }
+        </style>
+        <div class="cent">
+            <?php
+            if(($now-1) > 0){
+                echo "<a href='?do=$do&p=($now-1)'>";
+                echo " < </a>";
+            }
+            for ($i=1; $i <= $pages ; $i++) { 
+                $size=($now==$i)?"24px":"20px";
+                echo "<a href='?do=$do&p=$i' style='font-size:$size;'>";
+                echo " &nbsp; $i &nbsp; </a>";
+            }
+            if(($now+1) <= $pages){
+                echo "<a href='?do=$do&p=($now+1)'>";
+                echo " > </a>";
+            }
+            ?>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
