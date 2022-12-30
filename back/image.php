@@ -13,19 +13,27 @@
                     <td></td>
                 </tr>
                 <?php
-                $rows = $Image->all();
+
+                //分頁開始
+                
+                $total = $Image->count(); //總筆數
+                $num = 3; //每頁筆數 
+                $pages = ceil($total / $num); //總頁數
+                $now = $_GET['p'] ?? 1; //頁數初始化
+                $start = ($now - 1) * $num; //開始的地方 dbSQL 從0開始
+                $rows = $Image->all("limit $start,$num");
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
                     // echo $checked;
                 ?>
                     <tr>
-                        <td >
+                        <td>
                             <img src="./upload/<?= $row['img'] ?>" style="width:100px; height:68px;" alt="">
                         </td>
-                        <td >
+                        <td>
                             <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= $checked ?>>
                         </td>
-                        <td >
+                        <td>
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         </td>
                         <td>
@@ -38,6 +46,29 @@
                 <?php }  ?>
             </tbody>
         </table>
+        <style>
+            .cent a {
+                text-decoration: none;
+            }
+        </style>
+        <div class="cent">
+            <?php
+            if (($now - 1) > 0) {
+                echo "<a href='?do=$do&p=($now-1)'>";
+                echo " < </a>";
+            }
+            for ($i = 1; $i <= $pages; $i++) {
+                $size = ($now == $i) ? "24px" : "20px";
+                echo "<a href='?do=$do&p=$i' style='font-size:$size;'>";
+                echo "&nbsp;$i&nbsp;" ;
+                echo "</a>";
+            }
+            if (($now + 1) <= $pages ) {
+                echo "<a href='?do=$do&p=($now+1)'>";
+                echo " > </a>";
+            }
+            ?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

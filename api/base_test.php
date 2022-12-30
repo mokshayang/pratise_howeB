@@ -39,7 +39,7 @@ class DB
 
     function all(...$args)
     {
-        $sql = "select * from $this->table";
+        $sql = "select * from $this->table ";
         if (isset($args[0])) {
             if (is_array($args[0])) {
                 $tmp = $this->arrayToSqlArray($args[0]);
@@ -89,7 +89,6 @@ class DB
             $sql = "insert into $this->table (`" . join("`,`", $cols) . "`)
             values ('" . join("','", $array) . "')";
         }
-        dd($sql);
         return $this->pdo->exec($sql);
     }
 
@@ -150,3 +149,5 @@ function dd($array)
 function to($url){
    header("location:".$url);
 }
+// $a=$Image->all("limit 0,10");
+// dd($a);
