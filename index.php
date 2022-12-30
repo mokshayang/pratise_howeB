@@ -24,7 +24,7 @@ include_once "./api/base_test.php";
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
 		<a title="" href="index.php">
-			<div class="ti" style="background:url('use/'); background-size:cover;"></div>
+			<div class="ti" style="background:url('upload/<?=$Title->find(['sh'=>1])['img'];?>'); background-size:cover;"></div>
 			<!--標題-->
 		</a>
 		<div id="ms">
@@ -34,8 +34,7 @@ include_once "./api/base_test.php";
 					<span class="t botli">主選單區</span>
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-					<span class="t">進站總人數 :
-						1 </span>
+					<span class="t">進站總人數 :<?=$Total->find(1)['total']?>
 				</div>
 			</div>
 			<?php
