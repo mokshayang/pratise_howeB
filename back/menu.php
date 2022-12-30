@@ -15,7 +15,7 @@
                     <td></td>
                 </tr>
                 <?php
-                $rows = $Menu->all();
+                $rows = $Menu->all(["parent"=>0]);
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
                     // echo $checked;

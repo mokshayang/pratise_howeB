@@ -34,7 +34,7 @@ dd($$table);
 dd($_POST);
 foreach ($_POST['id'] as $idx => $id) {
     if (isset($_POST['del']) && in_array($id, $_POST['del'])) {
-        $$table->del($id);//$$table === $Title ....form 過來的 名稱 $Title 以建立在 base_test/.php
+        $$table->del($id); //$$table === $Title ....form 過來的 名稱 $Title 以建立在 base_test/.php
     } else {
         $row = $$table->find($id); //單筆進each
         switch ($table) {
@@ -43,17 +43,17 @@ foreach ($_POST['id'] as $idx => $id) {
                 $row['sh'] = (isset($_POST['sh']) && $_POST['sh'] == $id) ? 1 : 0;
                 break;
             case "Admin":
-                $row['acc']=$_POST['acc'];
-                $row['pw']=$_POST['pw'];
+                $row['acc'] = $_POST['acc'];
+                $row['pw'] = $_POST['pw'];
                 break;
             case "Menu":
-                $row['name']=$_POST['name'][$idx];
-                $row['href']=$_POST['href'][$idx];
-                $row=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
+                $row['name'] = $_POST['name'][$idx];
+                $row['href'] = $_POST['href'][$idx];
+                $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh'])) ? 1 : 0;
                 break;
             default:
-                if(isset($_POST['text'])){
-                $row['text'] = $_POST['text'][$idx]; //db[text] = form 過來的
+                if (isset($_POST['text'])) {
+                    $row['text'] = $_POST['text'][$idx]; //db[text] = form 過來的
                 }
                 $row['sh'] = (isset($_POST['sh']) && in_array($id, $_POST['sh'])) ? 1 : 0;
         }
