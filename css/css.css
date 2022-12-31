@@ -81,6 +81,17 @@ body
 	background:url(../icon/menu2.fw.png) center no-repeat;
 	background-size:cover;
 }
+.mw{
+	position: absolute;
+	top: 0;
+	width: 150px;
+	left: 180px;
+	z-index: 10;
+	background-color: #aaaaee80;
+	padding: 20px;
+	border-radius: 15px;
+	display: none;
+}
 .mainmu2
 {
 	position:relative;

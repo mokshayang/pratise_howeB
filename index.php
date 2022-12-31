@@ -39,18 +39,20 @@ include_once "./api/base_test.php";
 					?>
 						<div class="mainmu cent">
 							<a href="<?= $value['href'] ?>"><?= $value['name'] ?></a>
-
+						
 						<?php
 						//次選單 show
 						$chk = $Menu->count(['parent' => $value['id']]);
 						if ($chk > 0) {
 							$sub = $Menu->all(['parent' => $value['id']]);
 							// dd($sub);
+							echo "<div class='mw'>";
 							foreach ($sub as $su) {
-								echo "<div class='mainmu2'>";
+								echo "<div class='mainmu2 cent'>";
 								echo "<a href='" . $su['href'] . "'>" . $su['name'] . "</a>";
 								echo "</div>";
 							}
+							echo "</div>";
 						}
 						echo "</div>";
 					}
