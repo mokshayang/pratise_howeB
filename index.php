@@ -23,7 +23,8 @@ include_once "./api/base_test.php";
 	</div>
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
-		<a title="" href="index.php">
+		<a title="<?=$Title->find(['sh'=>1])['text']?>" href="index.php">
+		
 			<div class="ti" style="background:url('upload/<?=$Title->find(['sh'=>1])['img'];?>'); background-size:cover;"></div>
 			<!--標題-->
 		</a>

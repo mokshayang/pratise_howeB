@@ -55,7 +55,7 @@ class DB
     }
     function find($id)
     {
-        $sql = "select * from $this->table";
+        $sql = "select * from $this->table ";
         if (is_array($id)) {
             $tmp = $this->arrayToSqlArray($id);
             $sql .= " where " . join(" && ", $tmp);
@@ -148,6 +148,12 @@ function dd($array)
 }
 function to($url){
    header("location:".$url);
+}
+if(!isset($_SESSION['visit'])){
+    $_SESSION['visit']=1;
+    $total=$Total->find(1);
+    $total['total']++;
+    $Total->save($total);
 }
 // $a=$Image->all("limit 0,10");
 // dd($a);

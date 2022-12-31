@@ -14,12 +14,13 @@
                 </tr>
                 <?php
                 //分頁開始
-                $total = $Image->count(); //總筆數
+                $table=$_GET['table'];
+                $total = $$table->count(); //總筆數
                 $num = 3; //每頁筆數 
                 $pages = ceil($total / $num); //總頁數
                 $now = $_GET['p'] ?? 1; //頁數初始化
                 $start = ($now - 1) * $num; //開始的地方 dbSQL 從0開始
-                $rows = $Image->all("limit $start,$num");//建立查詢
+                $rows = $$table->all("limit $start,$num");//建立查詢
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
                     // echo $checked;
@@ -52,16 +53,16 @@
         <div class="cent">
             <?php
             if(($now-1) > 0){
-                echo "<a href='?do=$do&p=($now-1)'>";
+                echo "<a href='?do=$do&table=".ucfirst($do)."&p=".($now-1)."'>";
                 echo " < </a>";
             }
             for ($i=1; $i <= $pages ; $i++) { 
                 $size=($now==$i)?"24px":"20px";
-                echo "<a href='?do=$do&p=$i' style='font-size:$size;'>";
+                echo "<a href='?do=$do&table=".ucfirst($do)."&p=$i' style='font-size:$size;'>";
                 echo " &nbsp; $i &nbsp; </a>";
             }
             if(($now+1) <= $pages){
-                echo "<a href='?do=$do&p=($now+1)'>";
+                echo "<a href='?do=$do&table=".ucfirst($do)."&p=".($now+1)."'>";
                 echo " > </a>";
             }
             ?>
