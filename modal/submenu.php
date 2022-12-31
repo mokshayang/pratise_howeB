@@ -10,7 +10,7 @@
         </tr>
         <?php
         $rows = $Menu->all(['parent' => $_GET['id']]);
-        dd($rows);
+        // dd($rows);
         foreach ($rows as $row) {
         ?>
             <tr>

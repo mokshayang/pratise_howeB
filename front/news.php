@@ -10,22 +10,23 @@
 		?>
 	</marquee>
 	<div style="height:32px; display:block;"></div>
-	<ol>
 	<?php
 	$total = $News->count(); //總筆數
 	$num = 5; //每頁筆數 
 	$pages = ceil($total / $num); //總頁數
 	$now = $_GET['p'] ?? 1; //頁數初始化
 	$start = ($now - 1) * $num; //開始的地方 dbSQL 從0開始
-	$news = $News->all(['sh'=>1],"limit $start,$num"); //建立查詢
-
-	foreach ($news as $key => $value) {
+	$news = $News->all(['sh' => 1], "limit $start,$num"); //建立查詢
 	?>
-		<li class="sswww">
-			<?= mb_substr($value['text'], 0, 24) . "..." ?>
-			<span class="all" style="display:none;"><?= $value['text'] ?></span>
-		</li>
-	<?php } ?>
+	<ol start="<?= $start + 1 ?>">
+		<?php
+		foreach ($news as $key => $value) {
+		?>
+			<li class="sswww">
+				<?= mb_substr($value['text'], 0, 24) . "..." ?>
+				<span class="all" style="display:none;"><?= $value['text'] ?></span>
+			</li>
+		<?php } ?>
 	</ol>
 	<!--正中央-->
 	<style>
