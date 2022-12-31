@@ -140,6 +140,8 @@ $Admin=new DB('admin');
 $News=new DB('news');
 $Menu=new DB('menu');
 $Total=new DB('total');
+$total=$Total->find(1);
+$bottom=$Bottom->find(1);
 function dd($array)
 {
     echo "<pre>";

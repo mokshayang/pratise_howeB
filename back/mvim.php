@@ -13,13 +13,13 @@
                     <td></td>
                 </tr>
                 <?php
-                $table = $_GET['table'];
-                $total = $$table->count(); //總筆數
+               
+                $total = $Mvim->count(); //總筆數
                 $num = 3; //每頁筆數 
                 $pages = ceil($total / $num); //總頁數
                 $now = $_GET['p'] ?? 1; //頁數初始化
                 $start = ($now - 1) * $num; //開始的地方 dbSQL 從0開始
-                $rows = $$table->all("limit $start,$num"); //建立查詢
+                $rows = $Mvim->all("limit $start,$num"); //建立查詢
 
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
