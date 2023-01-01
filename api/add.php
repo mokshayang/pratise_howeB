@@ -22,7 +22,7 @@ switch($table){
         $data['parent']=0;
         break;
         default:
-        if(isset($_POST['text'])){
+        if(isset($_POST['text']) && !empty($_POST['text'])){
             $data['text']=$_POST['text'];
         }
         $data['sh']=($table=="Title")?0:1;//抓Title from sh=0 ，其他的都是1

@@ -170,3 +170,6 @@ input:focus,button:focus
 	cursor:pointer;
 	text-decoration:none;
 }
+table{
+	text-align: center;
+}

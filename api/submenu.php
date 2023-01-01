@@ -12,6 +12,7 @@ if (isset($_POST['id'])) {
         }
     }
 }
+
 if (isset($_POST['add_name'])) {
     foreach ($_POST['add_name'] as $idx => $name) {
         if (!empty($name)) {

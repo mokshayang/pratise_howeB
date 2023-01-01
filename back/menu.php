@@ -4,7 +4,7 @@
     // dd($_POST);//$_POST['name']，兩筆資料，有相同的鑑值 ['name']
     ?>
     <form method="post" action="./api/edit.php">
-        <table width="100%">
+        <table width="100%" class="cent">
             <tbody>
                 <tr class="yel">
                     <td width="30%">主選單名單</td>
@@ -28,7 +28,7 @@
                         <td>
                             <input type="text" name="href[]" value="<?= $row['href']; ?>">
                         </td>
-                        <td></td>
+                        <td><?=$Menu->count(['parent'=>$row['id']])?></td>
                         <td>
                             <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= $checked ?>>
                         </td>

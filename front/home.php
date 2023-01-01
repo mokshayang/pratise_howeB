@@ -57,7 +57,7 @@
         ?>
             <li>
                 <?= mb_substr($value['text'],0,24)."..." ?>
-                <span class="all" style="display:none;"><?=$value['text']?></span>
+                <span class="all" style="display:none;overflow:auto;"><?=$value['text']?></span>
             </li>
         <?php } ?>
         </ul>

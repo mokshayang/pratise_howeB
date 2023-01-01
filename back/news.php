@@ -7,38 +7,36 @@
         <table width="100%">
             <tbody>
                 <tr class="yel">
-                    
+
                     <td width="80%">最新消息</td>
                     <td width="10%">顯示</td>
                     <td width="10%">刪除</td>
                     <td></td>
                 </tr>
                 <?php
-             
-                 $total = $News->count(); //總筆數
-                 $num = 3; //每頁筆數 
-                 $pages = ceil($total / $num); //總頁數
-                 $now = $_GET['p'] ?? 1; //頁數初始化
-                 $start = ($now - 1) * $num; //開始的地方 dbSQL 從0開始
-                 $rows = $News->all("limit $start,$num");//建立查詢
-                
+
+                $total = $News->count(); //總筆數
+                $num = 3; //每頁筆數 
+                $pages = ceil($total / $num); //總頁數
+                $now = $_GET['p'] ?? 1; //頁數初始化
+                $start = ($now - 1) * $num; //開始的地方 dbSQL 從0開始
+                $rows = $News->all("limit $start,$num"); //建立查詢
+
                 foreach ($rows as $row) {
                     $checked = ($row['sh'] == 1) ? "checked" : "";
                     // echo $checked;
                 ?>
                     <tr>
-                       
-                        <td style="width:95;height:62px;">
-                           <textarea name="text[]" style="width:95%;height:62px;"><?=$row['text']?></textarea>
+                        <td>
+                            <textarea name="text[]" style="width:95%;height:62px;"><?= $row['text'] ?></textarea>
                         </td>
-                        <td >
+                        <td>
                             <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= $checked ?>>
                         </td>
-                        <td >
+                        <td>
                             <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                         </td>
                         <td>
-                           
                             <!-- N筆資料 一起傳送，但redio 與 checkbox 無法辨別 所以傳送隱藏欄位 id 與其對應共同的索引-->
                             <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
                         </td>
@@ -54,19 +52,19 @@
         </style>
         <div class="cent">
             <?php
-           if (($now - 1) > 0) {
-            echo "<a href='?do=$do&table=" . ucfirst($do) . "&p=" . ($now - 1) . "'>";
-            echo " < </a>";
-        }
-        for ($i = 1; $i <= $pages; $i++) {
-            $size = ($now == $i) ? "24px" : "20px";
-            echo "<a href='?do=$do&table=" . ucfirst($do) . "&p=$i' style='font-size:$size;'>";
-            echo " &nbsp; $i &nbsp; </a>";
-        }
-        if (($now + 1) <= $pages) {
-            echo "<a href='?do=$do&table=" . ucfirst($do) . "&p=" . ($now + 1) . "'>";
-            echo " > </a>";
-        }
+            if (($now - 1) > 0) {
+                echo "<a href='?do=$do&table=" . ucfirst($do) . "&p=" . ($now - 1) . "'>";
+                echo " < </a>";
+            }
+            for ($i = 1; $i <= $pages; $i++) {
+                $size = ($now == $i) ? "24px" : "20px";
+                echo "<a href='?do=$do&table=" . ucfirst($do) . "&p=$i' style='font-size:$size;'>";
+                echo " &nbsp; $i &nbsp; </a>";
+            }
+            if (($now + 1) <= $pages) {
+                echo "<a href='?do=$do&table=" . ucfirst($do) . "&p=" . ($now + 1) . "'>";
+                echo " > </a>";
+            }
             ?>
         </div>
         <table style="margin-top:40px; width:70%;">
